@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pr"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context=".Login">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        style="@style/loginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/chatlogo" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/loginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register" />
+
+    <View
+        android:id="@+id/divider2"
+        style="@style/loginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/divider_style" />
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/loginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|left"
+        android:text="@string/name"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/username"
+        style="@style/loginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center|left"
+        android:hint="@string/name"
+        android:inputType="text"
+        android:textColorHint="#A4FFFFFF"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        style="@style/loginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|left"
+        android:text="@string/mail"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/mail"
+        style="@style/loginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center|left"
+        android:hint="@string/mail"
+        android:inputType="text"
+        android:textColorHint="#A4FFFFFF"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        style="@style/loginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|left"
+        android:text="@string/telephone"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/telephone"
+        style="@style/loginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center|left"
+        android:hint="@string/telephone"
+        android:inputType="text"
+        android:textColorHint="#A4FFFFFF"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/loginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|left"
+        android:text="@string/passwordRegister"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/password"
+        style="@style/loginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center|left"
+        android:hint="@string/passwordRegister"
+        android:inputType="textPassword"
+        android:textColorHint="#A4FFFFFF"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/register"
+        style="@style/roundButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/signUp" />
+
+    <View
+        android:id="@+id/divider3"
+        style="@style/loginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/divider_style" />
+
+    <TextView
+        android:id="@+id/textView7"
+        style="@style/loginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/copyright" />
+
+</LinearLayout>

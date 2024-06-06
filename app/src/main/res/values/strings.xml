@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">ChatGalaxy</string>
+    <string name="welcome">¡Bienvenido de nuevo!</string>
+    <string name="signIn">Inicia sesión en tu cuenta</string>
+    <string name="UserMailNumber">Usuario, correo o número de teléfono</string>
+    <string name="passwordLogin">Contraseña</string>
+    <string name="passwordRegister">Contraseña*</string>
+    <string name="rememberMe">Recuérdame</string>
+    <string name="name">Nombre de usuario*</string>
+    <string name="telephone">Teléfono móvil*</string>
+    <string name="mail">Correo*</string>
+    <string name="buttonSignIn">Iniciar sesión</string>
+    <string name="signUp">Regístrate</string>
+    <string name="copyright">Copyright</string>
+    <string name="search">buscar</string>
+    <string name="signOff">cerrar sesión</string>
+    <string name="changeImage">cambiar imagen</string>
+    <string name="createGroup">Crear grupo</string>
+    <string name="deleteGroup">Borrar grupo</string>
+    <string name="addContact">Añadir contacto</string>
+    <string name="deleteContact">Borrar contacto</string>
+    <string name="deleteAccount">Borrar cuenta</string>
+    <string name="register">¡Regístrate con nosotros!</string>
+    <string name="send">Enviar</string>
+    <string name="writeAMessage">Escribe un mensaje...</string>
+</resources>
