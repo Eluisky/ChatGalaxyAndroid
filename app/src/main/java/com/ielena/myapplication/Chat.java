@@ -34,13 +34,14 @@ public class Chat extends AppCompatActivity {
     private DatabaseManager databaseManager;
     private RecyclerView recyclerView;
     private ContactAdapter contactAdapter;
-    private ArrayList<Contact> contactList = new ArrayList<>();
+    private static ArrayList<Contact> contactList = new ArrayList<>();
     public static int idUser = 0;
     public static int idContact = 0;
     public static int idGroup = 0;
     public static String username = "empty";
     public static ImageView profileImage;
     public static TextView welcome;
+    public static boolean signOff = false;
 
 
     @Override
@@ -67,12 +68,25 @@ public class Chat extends AppCompatActivity {
 
         // Asignamos el nombre a la vista de chats
         welcome.setText("¡Bienvenido/a " + username + "!");
-        contactList = Mediator.createChat(username);
-        contactAdapter = new ContactAdapter(contactList, this);
-        recyclerView.setAdapter(contactAdapter);
+        Chat.signOff = false;
+        //Cargar los chats en un hilo
+        if (contactList.size()==0){
+            runOnUiThread(() -> {
+                contactList = Mediator.createChat(username);
+                contactAdapter = new ContactAdapter(contactList, this);
+                recyclerView.setAdapter(contactAdapter);
 
+
+            });
+        }
+        else {
+            Mediator.userImage(username);
+            runOnUiThread(() -> {
+                contactAdapter = new ContactAdapter(contactList, this);
+                recyclerView.setAdapter(contactAdapter);
+            });
+        }
         user.chatContext = this;
-
     }
     public void updateRecyclerView() {
         runOnUiThread(() -> {
@@ -102,6 +116,7 @@ public class Chat extends AppCompatActivity {
             username = "empty";
             user.disconnectFromServer();
             databaseManager.shutdown();
+            signOff = true;
             Intent intent = new Intent(Chat.this, Login.class);
             startActivity(intent);
             return true;

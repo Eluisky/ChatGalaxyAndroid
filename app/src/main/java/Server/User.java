@@ -1,4 +1,4 @@
-package Objects;
+package Server;
 
 import static com.ielena.myapplication.ChatActivity.chatActivity;
 import static com.ielena.myapplication.ChatActivity.messageTo;

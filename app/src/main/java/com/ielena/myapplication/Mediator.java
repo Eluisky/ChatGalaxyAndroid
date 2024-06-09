@@ -42,7 +42,7 @@ import Adapters.ChatAdapter;
 import Adapters.ContactAdapter;
 import Objects.Contact;
 import Objects.Message;
-import Objects.User;
+import Server.User;
 import Server.DatabaseManager;
 
 public class Mediator {
@@ -311,17 +311,15 @@ public class Mediator {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        userThread();
+        userThread(context);
 
         Intent intent = launchChat(context);
-        // Cargar los chats
-        createChat(username);
         //Devolver el intent
         return intent;
 
     }
     //HILO DEL USUARIO
-    public static void userThread(){
+    public static void userThread(Context context){
         threadReceiveMessages = new Thread(() -> {
             // Creamos el usuario para enviar mensajes
             User user = new User(Chat.idUser, context);
@@ -349,11 +347,26 @@ public class Mediator {
         // Lanzar la actividad
         return intent;
     }
-
+    //CARGAR IMAGEN USUARIO
+    public static void userImage(String username){
+        Future<Integer> idUserFuture;
+        Future<Bitmap> imageFuture;
+        try {
+            idUserFuture = databaseManager.returnIdAsync(username);
+            idUser = idUserFuture.get();
+            //Conseguir la imagen de perfil del usuario
+            imageFuture = databaseManager.getProfileImageAsync(idUser);
+            Bitmap image = imageFuture.get();
+            Chat.profileImage.setImageBitmap(image);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     //CARGAR LOS CHATS DEL USUARIO CORRESPONDIENTE
     public static ArrayList<Contact> createChat(String username) {
-        Future<Integer> idUserFuture;
         Future<Bitmap> imageFuture;
         Future<ArrayList<Integer>> contactsFuture;
         Future<String> contactNameFuture;
@@ -364,13 +377,8 @@ public class Mediator {
         }
         //Guardar el id del usuario que inicia sesion
         try {
-            idUserFuture = databaseManager.returnIdAsync(username);
-            idUser = idUserFuture.get();
-
-            //Conseguir la imagen de perfil del usuario
-            imageFuture = databaseManager.getProfileImageAsync(idUser);
-            Bitmap image = imageFuture.get();
-            Chat.profileImage.setImageBitmap(image);
+            //Imagen del usuario
+            userImage(username);
 
             //Añade a los chats los usuarios que haya agregado y que le hayan agregado al usuario
             contactsFuture = databaseManager.checkContactsAsync(idUser);
@@ -402,7 +410,9 @@ public class Mediator {
                 user.disconnectFromServer();
                 threadReceiveMessages.interrupt();
                 //Abrir uno nuevo con los grupos nuevos
-                userThread();
+                if (Chat.signOff != true){
+                    userThread(context);
+                }
             }
             for (int i = 0; i < contacts.size(); i++) {
                 contactNameFuture = databaseManager.getNameGroupAsync(contacts.get(i));
@@ -610,7 +620,7 @@ public class Mediator {
                 }
                 Toast.makeText(context, "Grupo creado correctamente", Toast.LENGTH_SHORT).show();
                 user.disconnectFromServer();
-                userThread();
+                userThread(context);
                 return true;
             }
 
